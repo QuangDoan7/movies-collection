@@ -1,0 +1,88 @@
+﻿@page
+@model movies_collection.Pages.Movies.IndexModel
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-page="Create" class="text-decoration-none fw-bold text-primary">
+        <span class="fs-4 border border-2 rounded-2 px-2 bg-primary text-white">+</span>
+        <span>Add new Movie</span>
+    </a>
+</p>
+
+<div class="d-flex flex-wrap gap-4 justify-content-center align-items-baseline my-2">
+    <div class="d-flex flex-wrap gap-2 justify-content-center align-items-baseline">
+        <h5>Sort By:</h5>
+        <a asp-page="./Index" asp-route-sortOrder="@Model.TitleSort"
+            class="border border-1 border-primary rounded-3 px-3 fs-5 text-decoration-none bg-primary text-white fw-bold"
+        >
+            Title
+        </a>
+        <a asp-page="./Index" asp-route-sortOrder="@Model.ReleaseYearSort"
+           class="border border-1 border-primary rounded-3 px-3 fs-5 text-decoration-none bg-primary text-white fw-bold"
+        >
+            Release Year
+        </a>
+    </div>
+    <form method="get" class="d-flex flex-wrap gap-2 justify-content-center align-items-baseline">
+        <h5>Filter by Genre:</h5>
+        <select name="genre" class="text-primary fw-bold form-select w-auto border border-2 border-primary" onchange="form.submit()">
+            <option value="">All</option>
+            @foreach (var genre in Model.Genres)
+            {
+                <option value="@genre" class="text-primary" selected="@(genre == Model.CurrentGenre)">@genre</option>
+			}
+        </select>
+    </form>
+</div>
+
+
+<p class="text text-danger fw-bold text-center">
+	*Click on a movie to see more details, edit, or delete it.
+</p>
+
+<div class="row justify-content-between ">
+    @foreach (var item in Model.Movie)
+    {
+        <div class="col-12 col-lg-6 align-content-center">
+            <div class="card p-2 my-2">
+                <a asp-page="./Details" asp-route-id="@item.MovieId" class="text-decoration-none">
+                    <div class="d-flex flex-row align-items-center">
+                        <img class="card-img-top"
+                             @if (item.MoviePosterUrl == null || item.MoviePosterUrl == "")
+                             {
+                                 <text>src="@Url.Content("~/img/popcorn.png")"</text>
+                             }
+                             else
+                             {
+                                 <text>src="@Url.Content($"~/movieimg/{item.MoviePosterUrl}")"</text>
+						     }
+                             alt="@item.Title Poster"
+                             style="max-width: 30%; height: 200px; object-fit: contain;" />
+                        <div class="card-body">
+                            <p class="card-text text-black fw-bold" style="flex: none;">
+                                <span class="text-danger fs-4">@(item.Title)</span>
+                                <br />
+                                <span class="text-primary">Genre:</span> @(item.Genre)
+                                <br />
+                                <span class="text-primary">Description:</span> @(item.Description)
+                                <br />
+                                <span class="text-primary">Duration:</span> @(item.Duration) mins
+                                <br />
+                                <span class="text-primary">Release Year:</span> @(item.ReleaseYear)
+                                <br />
+                                <span class="text-primary">Last Watched Year:</span> @(item.LastWatchedYear)
+                                <br />
+                                <span class="text-primary">Personal rating:</span> @(item.Rating)
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>

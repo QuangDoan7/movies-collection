@@ -1,0 +1,76 @@
+﻿@page
+@model movies_collection.Pages.Movies.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete " + Model.Movie.Title;
+}
+
+<h1>Are you sure you want to delete @Model.Movie.Title?</h1>
+
+<div>
+    <hr />
+    <div class="d-flex flex-row align-items-center">
+        <img
+            @if (Model.Movie.MoviePosterUrl == null || Model.Movie.MoviePosterUrl == "")
+            {
+                <text>src="@Url.Content("~/img/popcorn.png")"</text>
+            }
+            else
+            {
+                <text>src="@Url.Content($"~/movieimg/{Model.Movie.MoviePosterUrl}")"</text>
+            }
+            alt="@Model.Movie.Title Poster"
+            class="img-thumbnail me-4"
+            style="width: 50%"
+        />
+        <dl class="row align-items-center align-items-md-baseline m-0">
+            <dt class="text-danger fs-1 align-items-center">
+                @Html.DisplayFor(model => model.Movie.Title)
+            </dt>
+            <dt class="col-sm-4 text-primary">
+                @Html.DisplayNameFor(model => model.Movie.ReleaseYear)
+            </dt>
+            <dd class="col-sm-8 my-2 fw-bold">
+                @Html.DisplayFor(model => model.Movie.ReleaseYear)
+            </dd>
+            <dt class="col-sm-4 text-primary">
+                @Html.DisplayNameFor(model => model.Movie.Duration)
+            </dt>
+            <dd class="col-sm-8 my-2 fw-bold">
+                @Html.DisplayFor(model => model.Movie.Duration) minutes
+            </dd>
+            <dt class="col-sm-4 text-primary">
+                @Html.DisplayNameFor(model => model.Movie.LastWatchedYear)
+            </dt>
+            <dd class="col-sm-8 my-2 fw-bold">
+                @Html.DisplayFor(model => model.Movie.LastWatchedYear)
+            </dd>
+            <dt class="col-sm-4 text-primary">
+                @Html.DisplayNameFor(model => model.Movie.Genre)
+            </dt>
+            <dd class="col-sm-8 my-2 fw-bold">
+                @Html.DisplayFor(model => model.Movie.Genre)
+            </dd>
+            <dt class="col-sm-4 text-primary">
+                @Html.DisplayNameFor(model => model.Movie.Rating)
+            </dt>
+            <dd class="col-sm-8 my-2 fw-bold">
+                @Html.DisplayFor(model => model.Movie.Rating)
+            </dd>
+            <dt class="col-sm-4 text-primary">
+                @Html.DisplayNameFor(model => model.Movie.Description)
+            </dt>
+            <dd class="col-sm-8 my-2 fw-bold">
+                @Html.DisplayFor(model => model.Movie.Description)
+            </dd>
+        </dl>
+    </div>
+    
+    <form method="post" class="my-3">
+        <input type="hidden" asp-for="Movie.MovieId" />
+        <input type="submit" value="Delete" class="border border-1 border-danger rounded-3 px-2 me-2 bg-danger text-white text-decoration-none fw-bold fs-5" /> ---
+        <a asp-page="./Details" class="border border-1 border-warning rounded-3 px-2 mx-2 bg-warning text-white text-decoration-none fw-bold fs-5" asp-route-id="@Model.Movie.MovieId">Back to Details</a> ---
+        <a asp-page="./Index" class="border border-1 border-secondary rounded-3 px-2 ms-2 bg-secondary text-white text-decoration-none fw-bold fs-5">Back to List</a>
+    </form>
+</div>
+
