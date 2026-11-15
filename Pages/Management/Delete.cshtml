@@ -1,0 +1,30 @@
+﻿@page
+@model movies_collection.Pages.Management.IndexModel
+@{
+	ViewData["Title"] = "User Management";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Email of Username</th>
+			<th class="text-center">Elimination</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var user in Model.Users)
+		{
+			<tr>
+				<td>@user.Email</td>
+				<td class="text-center">
+					<form method="post" asp-page-handler="Delete" asp-route-id="@user.Id">
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</form>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
