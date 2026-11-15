@@ -24,7 +24,7 @@ public class LastWatchedYearValidation : ValidationAttribute
         }
 
         return new ValidationResult(
-            $"Last Watched Year must be between the release year ({releaseYear}) and the current year ({currentYear})."
+            $"Last Watched Year must be between the release year {releaseYear} and the current year {currentYear}."
         );
     }
 }

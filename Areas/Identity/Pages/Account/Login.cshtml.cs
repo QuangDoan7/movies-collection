@@ -66,6 +66,11 @@ namespace movies_collection.Areas.Identity.Pages.Account
             /// </summary>
             [Required]
             [EmailAddress]
+            [Display(Name = "Email")]
+            [RegularExpression(
+                @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                ErrorMessage = "The Email field is not a valid e-mail address."
+            )]
             public string Email { get; set; }
 
             /// <summary>

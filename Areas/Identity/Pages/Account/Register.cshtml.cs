@@ -77,6 +77,10 @@ namespace movies_collection.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
+            [RegularExpression(
+                @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                ErrorMessage = "The Email field is not a valid e-mail address."
+            )]
             public string Email { get; set; }
 
             /// <summary>
@@ -84,7 +88,8 @@ namespace movies_collection.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(12, ErrorMessage = "The {0} must be {2}~{1} characters long, at least 1 uppercase character and 1 nonalphanumeric character.", MinimumLength = 8)]
+            [RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])[^\r\n]{8,12}$",
+                                ErrorMessage = "The {0} must be 8~12 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 numeric character, and 1 special character.")]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -146,6 +151,10 @@ namespace movies_collection.Areas.Identity.Pages.Account
                 }
                 foreach (var error in result.Errors)
                 {
+                    if (error.Code == "DuplicateUserName")
+                    {
+                        continue; // Skip adding the error to ModelState to avoid exposing that the email is already registered
+                    }
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }

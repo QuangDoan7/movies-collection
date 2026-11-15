@@ -65,19 +65,25 @@
                              style="max-width: 30%; height: 200px; object-fit: contain;" />
                         <div class="card-body">
                             <p class="card-text text-black fw-bold" style="flex: none;">
-                                <span class="text-danger fs-4">@(item.Title)</span>
+                                <span class="text-danger fs-4" data-testid="title">@(item.Title)</span>
                                 <br />
-                                <span class="text-primary">Genre:</span> @(item.Genre)
+                                <span class="text-primary">Genre:</span>
+                                <span data-testid="genre">@item.Genre</span>
                                 <br />
-                                <span class="text-primary">Description:</span> @(item.Description)
+                                <span class="text-primary">Description:</span>
+                                <span data-testid="description">@(item.Description)</span>
                                 <br />
-                                <span class="text-primary">Duration:</span> @(item.Duration) mins
+                                <span class="text-primary">Duration:</span>
+                                <span data-testid="duration">@(item.Duration) mins</span>
                                 <br />
-                                <span class="text-primary">Release Year:</span> @(item.ReleaseYear)
+                                <span class="text-primary">Release Year:</span>
+                                <span data-testid="release-year">@(item.ReleaseYear)</span>
                                 <br />
-                                <span class="text-primary">Last Watched Year:</span> @(item.LastWatchedYear)
+                                <span class="text-primary">Last Watched Year:</span>
+                                <span data-testid="last-watched-year">@(item.LastWatchedYear)</span>
                                 <br />
-                                <span class="text-primary">Personal rating:</span> @(item.Rating)
+                                <span class="text-primary">Personal rating:</span>
+                                <span data-testid="personal-rating">@(item.Rating)</span>
                             </p>
                         </div>
                     </div>

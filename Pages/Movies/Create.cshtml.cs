@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using movies_collection.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace movies_collection.Pages.Movies
 {

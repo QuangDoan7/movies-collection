@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using static movies_collection.Pages.Movies.CreateModel;
 
 namespace movies_collection.Models;
 
@@ -14,6 +15,7 @@ public class Movie
     public string Title { get; set; } = string.Empty;
 
     [Display(Name = "Release Year")]
+    [ReleaseYearValidation]
     public int? ReleaseYear { get; set; }
 
     public int? Duration { get; set; }

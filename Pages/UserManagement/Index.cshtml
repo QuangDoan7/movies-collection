@@ -1,5 +1,5 @@
 ﻿@page
-@model movies_collection.Pages.Management.IndexModel
+@model movies_collection.Pages.UserManagement.IndexModel
 @{
 	ViewData["Title"] = "User Management";
 }
@@ -20,7 +20,10 @@
 			<tr>
 				<td>@user.Email</td>
 				<td class="text-center">
-					<form method="post" asp-page-handler="Delete" asp-route-id="@user.Id">
+					<form method="post"
+						  asp-page-handler="Delete"
+						  asp-route-id="@user.Id"
+						  onsubmit="return confirm('Are you sure you want to delete this user?');">
 						<button type="submit" class="btn btn-danger">Delete</button>
 					</form>
 				</td>
