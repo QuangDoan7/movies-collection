@@ -1,5 +1,7 @@
 ﻿# Movies Collection Web Application
 
+[![Selenium Regression Tests](https://github.com/QuangDoan7/movies-collection-qa-automation/actions/workflows/selenium-regression.yml/badge.svg)](https://github.com/QuangDoan7/movies-collection-qa-automation/actions/workflows/selenium-regression.yml)
+
 ## Overview
 
 Movies Collection is a full-stack web application built with ASP.NET Razor Pages that allows users to manage their personal movie collections.
